@@ -35,5 +35,5 @@ app.get("*", function (req, res) {
 
 // start listening to server
 app.listen(process.env.PORT || 5000, () => {
-	console.log(`🚀 Server started on port ${process.env.PORT || 5000}`);
+	console.log(`🚀  Server started on port ${process.env.PORT || 5000}`);
 });
