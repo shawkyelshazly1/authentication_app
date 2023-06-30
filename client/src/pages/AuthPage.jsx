@@ -1,9 +1,13 @@
 import AppLogo from "../assets/logo.svg";
-import { Outlet, useLocation, NavLink } from "react-router-dom";
+import { Outlet, useLocation, NavLink, Navigate } from "react-router-dom";
 import SocialMediaAuth from "../components/SocialMediaAuth";
+import useAuthStore from "../store/authStore";
 
 export default function AuthPage() {
 	const { pathname } = useLocation();
+	const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
+
+	if (isAuthenticated) return <Navigate to="/profile" replace={true} />;
 
 	return (
 		<div className="w-full h-full justify-center items-center flex">
