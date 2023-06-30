@@ -1,6 +1,5 @@
 import axios from "axios";
 
-import useAuthStore from "./store/authStore";
 
 let axiosInstance = axios.create({
 	baseURL: "http://localhost:5000/users",

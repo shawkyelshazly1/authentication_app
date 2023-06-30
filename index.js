@@ -2,6 +2,7 @@ const express = require("express"),
 	cors = require("cors");
 const { initDatabaseConnection } = require("./database");
 const { UserAPI } = require("./api");
+const path = require("path");
 
 // init dotenv
 require("dotenv").config();
@@ -19,6 +20,18 @@ initDatabaseConnection();
 
 // register API
 UserAPI(app);
+
+//serve html
+app.use(express.static(path.join(__dirname, "./client/build")));
+
+app.get("*", function (req, res) {
+	res.sendFile(
+		path.join(__dirname, "./client/build/index.html"),
+		function (err) {
+			res.status(500).send(err);
+		}
+	);
+});
 
 // start listening to server
 app.listen(process.env.PORT || 5000, () => {
